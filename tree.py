@@ -127,7 +127,7 @@ def get_node_and_font_size(num_nodes):
         return 800, 15
     elif num_nodes <= 63:
         return 180, 9
-    else:  # sampai 100
+    else:
         return 40, 4
 
 # ------------------------------
