@@ -88,7 +88,6 @@ def hierarchy_pos_dynamic(G, root, vert_gap=0.2):
     if root is None or root not in G:
         return {}
 
-    # Hitung jumlah node di setiap level
     levels = {}
     def dfs(node, depth=0):
         if depth not in levels:
@@ -98,9 +97,8 @@ def hierarchy_pos_dynamic(G, root, vert_gap=0.2):
             dfs(child, depth+1)
     dfs(root)
 
-    max_width = max(levels.values())  # level dengan node terbanyak
+    max_width = max(levels.values())
 
-    # Reuse hierarchy_pos tapi width = max_width
     def _hierarchy_pos(node, left, right, vert_loc):
         pos[node] = ((left + right) / 2, vert_loc)
         children = list(G.successors(node))
