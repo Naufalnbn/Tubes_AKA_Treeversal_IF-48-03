@@ -1,6 +1,7 @@
 import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
+import time
 
 #---------------
 # Struktur Node
@@ -130,15 +131,23 @@ st.write(f"Tinggi pohon: {tree_height(root)}")
 
 # Jalankan preorder iteratif
 if st.button("Preorder Iteratif"):
+    start_time = time.time()
     result_iter = preorder_iteratif(root)
+    end_time = time.time()
+    exec_time = end_time - start_time
     st.write(f"Urutan Preorder Traversal Iteratif: {result_iter[:100]}{'...' if len(result_iter)>100 else ''}")
     st.write(f"Jumlah node yang dikunjungi: {len(result_iter)}")
+    st.write(f"Waktu eksekusi: {exec_time:.6f} detik")
 
 # Jalankan preorder rekursif
 if st.button("Preorder Rekursif"):
+    start_time = time.time()
     result_recur = preorder_rekursif(root)
+    end_time = time.time()
+    exec_time = end_time - start_time
     st.write(f"Urutan Preorder Traversal Rekursif: {result_recur[:100]}{'...' if len(result_recur)>100 else ''}")
     st.write(f"Jumlah node yang dikunjungi: {len(result_recur)}")
+    st.write(f"Waktu eksekusi: {exec_time:.6f} detik")
 
 # Visualisasi pohon untuk jumlah node ≤ 127
 if num_nodes <= 127:
