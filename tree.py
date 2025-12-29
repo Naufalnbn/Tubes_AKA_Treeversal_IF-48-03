@@ -2,7 +2,9 @@ import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
 
+#---------------
 # Struktur Node
+#---------------
 class Node:
     def __init__(self, info):
         self.info = info
@@ -114,7 +116,9 @@ def get_node_and_font_size(num_nodes):
     else:
         return 40, 4
 
+#--------------
 # Streamlit UI
+#--------------
 st.title("_:green[Preorder Traversal Pohon Biner]_")
 
 # Input jumlah node
