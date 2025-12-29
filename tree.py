@@ -123,7 +123,7 @@ def get_node_and_font_size(num_nodes):
 st.title("_:green[Preorder Traversal Pohon Biner]_")
 
 # Input jumlah node
-num_nodes = st.number_input("Masukkan jumlah node pohon:", min_value=1, max_value=1000000, value=1, step=1)
+num_nodes = st.number_input("Masukkan jumlah node pohon:", min_value=0, max_value=1000000, value=0, step=1)
 
 # Generate pohon seimbang
 root = generate_balanced_tree(num_nodes)
@@ -150,7 +150,9 @@ if st.button("Preorder Rekursif"):
     st.write(f"Waktu eksekusi: {exec_time:.6f} detik")
 
 # Visualisasi pohon untuk jumlah node ≤ 127
-if num_nodes <= 127:
+if num_nodes == 0:
+    st.info("Tidak ada pohon untuk divisualisasikan.")
+elif num_nodes <= 127:
     G = tree_to_graph(root)
     plt.figure(figsize=(8,6))
     pos = hierarchy_pos_dynamic(G, root.info, vert_gap=0.5)
