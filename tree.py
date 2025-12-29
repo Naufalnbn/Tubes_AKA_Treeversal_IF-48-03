@@ -2,18 +2,14 @@ import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
 
-# ------------------------------
 # Struktur Node
-# ------------------------------
 class Node:
     def __init__(self, info):
         self.info = info
         self.left = None
         self.right = None
 
-# ------------------------------
 # Generate pohon biner seimbang
-# ------------------------------
 def generate_balanced_tree(n):
     if n == 0:
         return None
@@ -28,45 +24,37 @@ def generate_balanced_tree(n):
         return root
     return build_tree(nodes)
 
-# ------------------------------
 # Preorder Traversal Iteratif
-# ------------------------------
 def preorder_iteratif(root):
     if not root:
         return []
-    stack = [root]
-    result = []
-    while stack:
-        node = stack.pop()
-        result.append(node.info)
+    stackPertama = [root]
+    stackHasil = []
+    while stackPertama:
+        node = stackPertama.pop()
+        stackHasil.append(node.info)
         if node.right:
-            stack.append(node.right)
+            stackPertama.append(node.right)
         if node.left:
-            stack.append(node.left)
-    return result
+            stackPertama.append(node.left)
+    return stackHasil
 
-# ------------------------------
 # Preorder Traversal Rekursif
-# ------------------------------
 def preorder_rekursif(root):
     if root is None:
         return []
-    result = [root.info] 
-    result += preorder_rekursif(root.left)
-    result += preorder_rekursif(root.right)
-    return result
+    hasil = [root.info] 
+    hasil += preorder_rekursif(root.left)
+    hasil += preorder_rekursif(root.right)
+    return hasil
 
-# ------------------------------
 # Hitung tinggi pohon
-# ------------------------------
 def tree_height(root):
     if not root:
         return 0
     return 1 + max(tree_height(root.left), tree_height(root.right))
 
-# ------------------------------
 # Convert pohon ke NetworkX graph
-# ------------------------------
 def tree_to_graph(root, G=None):
     if G is None:
         G = nx.DiGraph()
@@ -81,9 +69,7 @@ def tree_to_graph(root, G=None):
         tree_to_graph(root.right, G)
     return G
 
-# ------------------------------
 # Layout rapi untuk pohon
-# ------------------------------
 def hierarchy_pos_dynamic(G, root, vert_gap=0.2):
     if root is None or root not in G:
         return {}
@@ -111,9 +97,7 @@ def hierarchy_pos_dynamic(G, root, vert_gap=0.2):
     _hierarchy_pos(root, 0, max_width, 0)
     return pos
 
-# ------------------------------
 # Fungsi untuk ukuran node
-# ------------------------------
 def get_node_and_font_size(num_nodes):
     if num_nodes <= 1:
         return 4000, 40
@@ -130,9 +114,7 @@ def get_node_and_font_size(num_nodes):
     else:
         return 40, 4
 
-# ------------------------------
 # Streamlit UI
-# ------------------------------
 st.title("_:green[Preorder Traversal Pohon Biner]_")
 
 # Input jumlah node
